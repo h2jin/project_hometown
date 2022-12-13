@@ -1,0 +1,56 @@
+package com.example.demo.model;
+
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(nullable = false, unique = true)
+	private String userName;
+	
+	@Column(nullable = false, length = 100)
+	private String password;
+	
+	@Column(nullable = false,length = 50)
+	private String email;
+	
+	@Column(nullable = false,length = 50)
+	private String phoneNumber;
+	
+	@CreationTimestamp
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Timestamp creationDate;
+	
+	/*
+	 * @Enumerated(EnumType.STRING) private RoleType role;
+	 * 
+	 * @Enumerated(EnumType.STRING) private LoginType loginType;
+	 */
+	
+	@ColumnDefault("0")
+	private int reportCount;
+	
+}

@@ -1,0 +1,51 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+      
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hometown?serverTime=Asia/Seoul
+    username: ten
+    password: 1q2w3e4r5t!
+    hikari:
+      connectionTimeout: 30000
+      maximumPoolSize: 10
+      maxLifetime: 1800000
+      poolName: HikariCP
+      readOnly: false
+      
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: false   
+      
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      
+  servlet:
+    multipart:
+      max-file-size: 20MB #파일 하나의 최대 용량
+      max-request-size: 200MB #한 번에 동시에 보낼 수 있는 파일 용량 
+      
+            
